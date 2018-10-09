@@ -23,7 +23,7 @@ class CreateSelectOption extends React.Component {
     render() {
 
         return this.state.technologies.map((item) =>
-            <option key={item.id} value={this.state.selected} >{item.name}</option>
+            <option key={item.id} >{item.name}</option>
         );
     }
 

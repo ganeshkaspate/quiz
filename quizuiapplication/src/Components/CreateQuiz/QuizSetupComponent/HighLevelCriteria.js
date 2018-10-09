@@ -17,7 +17,6 @@ class HighLevelCriteria extends Component {
 
     onchange(event, tobeupdated, id) {
         const newData = this.props.lowData;
-        console.log('higher data', newData);
         if (newData !== undefined) {
             return newData.High.map((object, index) => {
                 if (object.id === id) {
@@ -30,8 +29,9 @@ class HighLevelCriteria extends Component {
 
 
     onaddRow(e, id) {
-        var previous_data = this.props.lowData;
-        var i = 0;
+        let previous_data = this.props.lowData;
+        let i = 0;
+        let type;
         var maximum = Math.max.apply(Math, previous_data.High.map(function (obj) {
             var regex = /\d+/g;
             var id = obj.id;
@@ -42,14 +42,23 @@ class HighLevelCriteria extends Component {
         previous_data.High.map((object) => {
             i = i + parseInt(object.numberOfQuestions);
         });
+
+       var temp = previous_data.High.slice(-1);
+
+       if(temp[0].type === "code Type") {
+           type = "NonCode Type"
+       } else {
+           type = "code Type"
+       }
+
         var regex = /\d+/g;
         var matches = id.match(regex);
         id = maximum + 1;
         const tempObj = {
-            id: 'M' + id,
+            id: 'H' + id,
             technologyId: 0,
-            technology: '',
-            type: '',
+            technology: temp[0].technology,
+            type: type,
             numberOfQuestions: ''
         }
         const addData = [...this.props.lowData.High, tempObj];

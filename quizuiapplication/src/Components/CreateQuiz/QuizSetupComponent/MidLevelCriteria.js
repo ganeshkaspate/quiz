@@ -31,6 +31,7 @@ class LowLevelCriteria extends React.Component {
     onaddRow(e, id) {
         var previous_data = this.props.lowData;
         var i = 0;
+        let type;
         var maximum = Math.max.apply(Math, previous_data.Medium.map(function (obj) {
             var regex = /\d+/g;
             var id = obj.id;
@@ -41,14 +42,23 @@ class LowLevelCriteria extends React.Component {
         previous_data.Medium.map((object) => {
             i = i + parseInt(object.numberOfQuestions);
         });
+
+        var temp = previous_data.Medium.slice(-1);
+
+        if (temp[0].type === "code Type") {
+            type = "NonCode Type"
+        } else {
+            type = "code Type"
+        }
+
         var regex = /\d+/g;
         var matches = id.match(regex);
         id = maximum + 1;
         const tempObj = {
             id: 'M' + id,
             technologyId: 0,
-            technology: '',
-            type: '',
+            technology: temp[0].technology,
+            type: type,
             numberOfQuestions: ''
         }
         const addData = [...this.props.lowData.Medium, tempObj];

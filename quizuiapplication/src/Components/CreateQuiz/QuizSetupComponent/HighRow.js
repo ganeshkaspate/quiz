@@ -8,15 +8,15 @@ const HighRow = (props) => (
             <div className="rowContent borderRight text-center ">1</div>
             <div className="rowContent fontStyle borderRight">
                 <label type="text">Select Technology</label>
-                <select className="selectpicker btn btn-labeled btn-start selectId techDrop  margin-left-10" onChange={(e) => { props.onChange(e, "technology", props.data.id) }}>
-                    <option disabled selected value>None Selected</option>
-                    {props.technologies && <Select techData={props.technologies} options={props.technologyName} />}
+                <select className="selectpicker btn btn-labeled btn-start selectId techDrop  margin-left-10" value = {props.data.technology} onChange={(e) => { props.onChange(e, "technology", props.data.id) }}>
+                    <option disabled selected value="">None Selected</option>
+                    {props.technologies && <Select techData={props.technologies} options={props.data.technology} />}
                 </select>
             </div>
             <div className="rowContent borderRight">
                 <span>Select Questions Type</span>
-                <select className="selectpicker btn btn-labeled btn-start selectId techDrop margin-left-10" onChange={(e) => { props.onChange(e, "type", props.data.id) }}>
-                    <option disabled selected value>None Selected</option>
+                <select className="selectpicker btn btn-labeled btn-start selectId techDrop margin-left-10" value = {props.data.type} onChange={(e) => { props.onChange(e, "type", props.data.id) }}>
+                    <option disabled selected value="">None Selected</option>
                     <option>code Type</option>
                     <option>NonCode Type</option>
                 </select>

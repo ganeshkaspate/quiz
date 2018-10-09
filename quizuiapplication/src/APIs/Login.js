@@ -1,11 +1,12 @@
 import axios from 'axios';
 import HttpStatus from 'http-status-codes';
 import { LOGIN_PATH } from '../Constants/AppConstants';
+import  apiGatewayEndpoint  from '../config/index';
 
 //API to generate auth token from LRSC
 export const generateToken = (bodyJson) =>
     axios.post(
-        `${LOGIN_PATH}username=${bodyJson.username}&password=${bodyJson.password}`,
+         apiGatewayEndpoint.apiGatewayEndpoint + `${LOGIN_PATH}username=${bodyJson.username}&password=${bodyJson.password}`,
         bodyJson
     ).then(data => {
             if(data.status === HttpStatus.OK){
